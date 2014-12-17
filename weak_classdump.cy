@@ -393,7 +393,8 @@ function methodLinesGenerator(methodList,methodsCount,isClassMethod){
 		}
 
 		symbol=isClassMethod ? "+" : "-"; symbol=[NSString stringWithString:symbol.toString()];
-		newMethod=symbol.toString()+"("+returnType.toString()+")"+methodString.toString()+";\n";
+		method_imp = method_getImplementation(method);                                                                                                                                                                                  
+		newMethod=symbol.toString()+"("+returnType.toString()+")"+methodString.toString()+";//" + method_imp +  "\n";
 		cappedMethod=[[NSString stringWithString:methodName.toString()] capitalizedString];
 		setterMethod="set"+cappedMethod.toString();
 		//free(returnType);
