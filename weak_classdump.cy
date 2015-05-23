@@ -641,16 +641,13 @@ function mweak_loadwdc_class(){
 	+(id)dumpBundle:(id)infoDictionary{
 	var bundle=[infoDictionary objectForKey:@"bundle"];
 	var outputdir=[infoDictionary objectForKey:@"outputdir"];
+	var executable=[bundle executablePath];
 
-
-	for (d = 0; d<[ObjectiveC.classes allKeys].length; d++) {
-		name=[ObjectiveC.classes allKeys][d].toString();
-		if ([[NSBundle bundleForClass:objc_getClass(name.toString())] isEqual:bundle]){
-			try {
-				weak_classdump(objc_getClass(objc_getClass(name.toString())), false, outputdir);
-			} 
-			catch (e) {
-			}
+	for (cls of ObjectiveC.images[executable].classes) {
+		try {
+			weak_classdump(cls, false, outputdir);
+		} catch (e) {
+			NSLog("Exception while dumping %@: %@", cls, e)
 		}
 	}
 	if (typeof(__AudioServicesPlaySystemSound)=="undefined"){
