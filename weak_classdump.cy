@@ -85,7 +85,7 @@ function getProtocolLines(protocol){
 			protocolsMethodsString=protocolsMethodsString.toString()+protPropertiesString;
 			free(protPropertyList);
 			
-			for (acase=0; acase<5; acase++){
+			for (acase=0; acase<4; acase++){
 			
 				protocolMethodsCount=new int;
 				isRequiredMethod=acase<2 ? NO : YES;
